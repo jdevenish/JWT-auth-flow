@@ -81,7 +81,7 @@ router.post('/authenticate', function(req, res) {
                     });
                     const options = {
                         headers: {
-                            "Access-Control-Allow-Origin": "https://mighty-tundra-18136.herokuapp.com/api/authenticate",
+                            "Access-Control-Allow-Origin": "https://heuristic-carson-cc6c87.netlify.app/",
                         },
                         httpOnly: true
                     }
