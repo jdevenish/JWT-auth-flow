@@ -42,7 +42,7 @@ router.post('/register', function(req, res) {
     });
 });
 
-router.options("/", (req, res) => {
+router.options("/authenticate", (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "https://heuristic-carson-cc6c87.netlify.app")
     res.status(200)
 });

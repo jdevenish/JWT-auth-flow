@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 8080;
 const cookieParser = require('cookie-parser');
 
 
-app.use(cors());
+app.use(cors({credentials: true, origin: true}));
 app.use(parser.json());
 app.use(cookieParser());
 
@@ -20,10 +20,10 @@ app.get("/", (req, res) => {
     })
 });
 
-app.options("/", (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://heuristic-carson-cc6c87.netlify.app")
-    res.status(200)
-});
+// app.options("/", (req, res) => {
+//     res.setHeader("Access-Control-Allow-Origin", "https://heuristic-carson-cc6c87.netlify.app")
+//     res.status(200)
+// });
 
 const userRoutes = require("./routes/auth");
 app.use("/api", userRoutes);
