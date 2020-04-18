@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/react-jwt-auth.iml" filepath="$PROJECT_DIR$/.idea/react-jwt-auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../react-jwt-frontend/.idea/react-jwt-frontend.iml" filepath="$PROJECT_DIR$/../react-jwt-frontend/.idea/react-jwt-frontend.iml" />
     </modules>
   </component>
 </project>
