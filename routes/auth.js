@@ -79,6 +79,12 @@ router.post('/authenticate', function(req, res) {
                     const token = jwt.sign(payload, secret, {
                         expiresIn: '1h'
                     });
+                    const options = {
+                        headers: {
+                            "Access-Control-Allow-Origin": "https://mighty-tundra-18136.herokuapp.com/api/authenticate",
+                        },
+                        httpOnly: true
+                    }
                     /*
                         One particular things to note here is that when we issued
                          the token, we set it as a cookie and set the httpOnly
@@ -87,7 +93,7 @@ router.post('/authenticate', function(req, res) {
                          cookie which helps secure the client from certain
                          vulnerabilities such as XSS.
                      */
-                    res.cookie('token', token, { httpOnly: true })
+                    res.cookie('token', token, options)
                         .status(200).json({
                             status: 200,
                             message:"User Authenticated"
