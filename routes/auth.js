@@ -23,6 +23,7 @@ router.get('/checkToken', withAuth, function(req, res) {
 
 // POST route to register a user
 router.post('/register', function(req, res) {
+    res.setHeader("Access-Control-Allow-Origin", "https://heuristic-carson-cc6c87.netlify.app")
     const { email, password } = req.body;
     const user = new User({ email, password });
     user.save(function(err) {
@@ -41,7 +42,10 @@ router.post('/register', function(req, res) {
     });
 });
 
-
+router.options("/", (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "https://heuristic-carson-cc6c87.netlify.app")
+    res.status(200)
+});
 router.post('/authenticate', function(req, res) {
     res.setHeader("Access-Control-Allow-Origin", "https://heuristic-carson-cc6c87.netlify.app")
     const { email, password } = req.body;

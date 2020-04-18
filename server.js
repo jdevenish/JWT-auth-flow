@@ -13,10 +13,16 @@ app.use(cookieParser());
 // Default Route
 app.get("/", (req, res) => {
     // add redirect at some point
+    res.setHeader("Access-Control-Allow-Origin", "https://heuristic-carson-cc6c87.netlify.app")
     res.status(200).json({
         "status": 200,
         "msg" : "server is up and running"
     })
+});
+
+app.options("/", (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "https://heuristic-carson-cc6c87.netlify.app")
+    res.status(200)
 });
 
 const userRoutes = require("./routes/auth");
