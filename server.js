@@ -4,7 +4,6 @@ const parser = require("body-parser");
 const cors = require("cors");
 const PORT = process.env.PORT || 8080;
 const cookieParser = require('cookie-parser');
-const secret = process.env.SECRET;
 
 
 app.use(cors());

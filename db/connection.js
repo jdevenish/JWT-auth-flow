@@ -6,8 +6,8 @@ mongoose.Promise = Promise;
 
 // set the uri for connecting to our local mongodb
 let mongoURI = "";
-if(process.env.MONGODB_URI){
-    mongoURI = process.env.MONGODB_URI
+if(process.env.NODE_ENV === 'production'){
+    mongoURI = process.env.DB_URL
 } else{
     mongoURI = "mongodb://localhost/authdb"
 }
