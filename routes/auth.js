@@ -79,11 +79,11 @@ router.post('/authenticate', function(req, res) {
                     const token = jwt.sign(payload, secret, {
                         expiresIn: '1h'
                     });
+                    // Add http-only flag back
                     const options = {
                         headers: {
-                            "Access-Control-Allow-Origin": "https://heuristic-carson-cc6c87.netlify.app/",
-                        },
-                        httpOnly: true
+                            "Access-Control-Allow-Origin": "https://heuristic-carson-cc6c87.netlify.app/"
+                        }
                     }
                     /*
                         One particular things to note here is that when we issued
