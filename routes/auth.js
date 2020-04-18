@@ -43,6 +43,7 @@ router.post('/register', function(req, res) {
 
 
 router.post('/authenticate', function(req, res) {
+    res.setHeader("Access-Control-Allow-Origin", "https://heuristic-carson-cc6c87.netlify.app")
     const { email, password } = req.body;
     User.findOne({ email }, function(err, user) {
         if (err) {
@@ -82,7 +83,7 @@ router.post('/authenticate', function(req, res) {
                     // Add http-only flag back
                     const options = {
                         headers: {
-                            "Access-Control-Allow-Origin": "https://heuristic-carson-cc6c87.netlify.app/"
+
                         }
                     }
                     /*
@@ -93,7 +94,7 @@ router.post('/authenticate', function(req, res) {
                          cookie which helps secure the client from certain
                          vulnerabilities such as XSS.
                      */
-                    res.cookie('token', token, options)
+                    res.cookie('token', token)
                         .status(200).json({
                             status: 200,
                             message:"User Authenticated"
