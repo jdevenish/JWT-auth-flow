@@ -5,7 +5,7 @@ const secret = process.env.SECRET;
 const withAuth = function(req, res, next) {
     const token = req.params.apiKey;
     if (!token.apiKey) {
-        res.status(401).send(`Unauthorized: No token provided; ${req.headers}`);
+        res.status(401).send(`Unauthorized: No token provided; ${req.params}`);
     } else {
         jwt.verify(token, secret, function(err, decoded) {
             if (err) {
@@ -17,5 +17,6 @@ const withAuth = function(req, res, next) {
             }
         });
     }
+    res.send(req.params)
 }
 module.exports = withAuth;
