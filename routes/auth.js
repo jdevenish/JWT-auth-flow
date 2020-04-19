@@ -98,7 +98,7 @@ router.post('/authenticate', function(req, res) {
                          cookie which helps secure the client from certain
                          vulnerabilities such as XSS.
                      */
-                    res.cookie('token', token, {SameSite: "Lax"})
+                    res.cookie('token', token, {httpOnly: true, sameSite: "Lax"})
                         .status(200).json({
                             status: 200,
                             message:"User Authenticated"
