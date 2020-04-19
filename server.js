@@ -10,7 +10,7 @@ const cookieParser = require('cookie-parser');
 app.use(cors({
     'allowedHeaders': ['sessionId', 'Content-Type'],
     'exposedHeaders': ['sessionId'],
-    'origin': "https://heuristic-carson-cc6c87.netlify.app",
+    'origin': "https://ga-job-tracker.netlify.app/",
     'methods': 'GET,PUT,POST,DELETE',
     'credentials': true,
     'preflightContinue': false
