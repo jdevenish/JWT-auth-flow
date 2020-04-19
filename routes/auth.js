@@ -47,7 +47,7 @@ router.post('/register', function(req, res) {
 //     res.status(200)
 // });
 router.post('/authenticate', function(req, res) {
-    // res.setHeader("Access-Control-Allow-Origin", "https://heuristic-carson-cc6c87.netlify.app")
+    res.setHeader("Access-Control-Allow-Origin", "https://heuristic-carson-cc6c87.netlify.app")
     const { email, password } = req.body;
     User.findOne({ email }, function(err, user) {
         if (err) {
