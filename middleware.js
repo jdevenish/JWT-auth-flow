@@ -3,9 +3,9 @@ const secret = process.env.SECRET;
 
 
 const withAuth = function(req, res, next) {
-    const token = req.get("api-key");
-    if (!token) {
-        res.status(401).send(`Unauthorized: No token provided; ${token}`);
+    const token = req.headers;
+    if (!token.apiKey) {
+        res.status(401).send(`Unauthorized: No token provided; ${req.headers}`);
     } else {
         jwt.verify(token, secret, function(err, decoded) {
             if (err) {
