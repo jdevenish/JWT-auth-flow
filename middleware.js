@@ -3,7 +3,7 @@ const secret = process.env.SECRET;
 
 
 const withAuth = function(req, res, next) {
-    const token = req.param('apiKey');
+    const token = req.param('token');
     if (!token) {
         res.status(401).send(`Unauthorized: No token provided; ${req.params}`);
     } else {
