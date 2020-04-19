@@ -12,7 +12,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../react-jwt-frontend" />
   </component>
   <component name="ProjectId" id="1agLWHvnGtQ9arrE5Y7VnRqCZeN" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -43,7 +43,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1587152319327</updated>
-      <workItem from="1587152321737" duration="25722000" />
+      <workItem from="1587152321737" duration="25994000" />
     </task>
     <servers />
   </component>
