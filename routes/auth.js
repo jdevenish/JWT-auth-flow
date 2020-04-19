@@ -18,7 +18,10 @@ router.get('/secret', withAuth, function(req, res) {
 });
 
 router.get('/checkToken', withAuth, function(req, res) {
-    res.sendStatus(200);
+    res.json({
+        status: 200,
+        message: "Valid user"
+    });
 });
 
 // POST route to register a user
