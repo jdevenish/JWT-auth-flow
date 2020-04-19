@@ -3,9 +3,9 @@ const secret = process.env.SECRET;
 
 
 const withAuth = function(req, res, next) {
-    const token = req.body.token;
+    const token = req.Cookie.token;
     if (!token) {
-        res.status(401).send('Unauthorized: No token provided');
+        res.status(401).send(`Unauthorized: No token provided; ${token}`);
     } else {
         jwt.verify(token, secret, function(err, decoded) {
             if (err) {
