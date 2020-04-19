@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="906e462c-c2e7-474c-b3b9-2efa981aea0c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/middleware.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../react-jwt-frontend/src/services/api-helper-userAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react-jwt-frontend/src/services/api-helper-userAuth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +42,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1587152319327</updated>
-      <workItem from="1587152321737" duration="27822000" />
+      <workItem from="1587152321737" duration="28026000" />
     </task>
     <servers />
   </component>
