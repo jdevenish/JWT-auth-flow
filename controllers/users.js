@@ -37,9 +37,15 @@ const registerNewUser = (req, res) => {
                     error: "Error registering new user please try again."
                 });
         } else {
+            // Issue token
+            const payload = { email };
+            const token = jwt.sign(payload, secret, {
+                expiresIn: '1h'
+            });
             res.status(200).json({
                 status: 200,
-                message : "Welcome to the club!"
+                message : "Welcome to the club!",
+                token: token
             });
         }
     });
