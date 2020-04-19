@@ -82,8 +82,7 @@ router.post('/authenticate', function(req, res) {
                     // Issue token
                     const payload = { email };
                     const token = jwt.sign(payload, secret, {
-                        expiresIn: '1h',
-                        SameSite: "Lax"
+                        expiresIn: '1h'
                     });
                     // Add http-only flag back
                     const options = {
@@ -99,7 +98,7 @@ router.post('/authenticate', function(req, res) {
                          cookie which helps secure the client from certain
                          vulnerabilities such as XSS.
                      */
-                    res.cookie('token', token)
+                    res.cookie('token', token, {SameSite: "Lax"})
                         .status(200).json({
                             status: 200,
                             message:"User Authenticated"
