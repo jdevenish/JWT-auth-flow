@@ -101,7 +101,8 @@ router.post('/authenticate', function(req, res) {
                     res.cookie('token', token, {httpOnly: true, sameSite: "Lax"})
                         .status(200).json({
                             status: 200,
-                            message:"User Authenticated"
+                            message:"User Authenticated",
+                            token: token
                     })
                 }
             });
