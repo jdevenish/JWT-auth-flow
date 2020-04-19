@@ -83,7 +83,7 @@ router.post('/authenticate', function(req, res) {
                     const payload = { email };
                     const token = jwt.sign(payload, secret, {
                         expiresIn: '1h',
-                        SameSite: "None"
+                        SameSite: "Lax"
                     });
                     // Add http-only flag back
                     const options = {
