@@ -17,7 +17,7 @@ router.get('/secret', withAuth, function(req, res) {
     res.send('The password is potato');
 });
 
-router.get('/checkToken/:apiKey', withAuth, function(req, res) {
+router.get('/checkToken', withAuth, function(req, res) {
     res.sendStatus(200);
 });
 
