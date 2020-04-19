@@ -26,7 +26,7 @@ function isCorrectPassword(enteredPassword, savedPassword, callback) {
 
 
 const registerNewUser = (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://ga-job-tracker.netlify.app/")
+    res.setHeader("Access-Control-Allow-Origin", "https://ga-job-tracker.netlify.app")
     const { email, password } = req.body;
     const user = new User({ email, password });
     user.save(function(err) {
@@ -53,7 +53,7 @@ const registerNewUser = (req, res) => {
 
 
 const authenticateCredentials = (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://ga-job-tracker.netlify.app/")
+    res.setHeader("Access-Control-Allow-Origin", "https://ga-job-tracker.netlify.app")
     const { email, password } = req.body;
     User.findOne({ email }, function(err, user) {
         if (err) {
