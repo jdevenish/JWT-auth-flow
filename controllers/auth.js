@@ -1,4 +1,5 @@
-const User = require("../models/User");
+const Auth = require("../models/Auth");
+const User = require("../models/User")
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -28,8 +29,8 @@ function isCorrectPassword(enteredPassword, savedPassword, callback) {
 const registerNewUser = (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "https://ga-job-tracker.netlify.app")
     const { email, password } = req.body;
-    const user = new User({ email, password });
-    user.save(function(err) {
+    const auth = new Auth({ email, password });
+    auth.save(function(err) {
         if (err) {
             res.status(500)
                 .json({
@@ -42,11 +43,33 @@ const registerNewUser = (req, res) => {
             const token = jwt.sign(payload, secret, {
                 expiresIn: '1h'
             });
-            res.status(200).json({
-                status: 200,
-                message : "Welcome to the club!",
-                token: token
-            });
+            const User = new User();
+            const newUser = {
+                userId: token,
+                targetCompanies: [],
+                networkingContacts: [],
+                jobSearchMaterials: {
+                    brandStatement: "",
+                    coverLetter: "",
+                    resume: "",
+                    gitHub: "",
+                    linkedIn: "",
+                    repl: "",
+                    codeSandBox: "",
+                    profileSite: ""
+                }
+            };
+            User.create(newUser).then(user =>{
+                res.status(200).json({
+                    status: 200,
+                    userProfile: user
+                })
+            })
+            // res.status(200).json({
+            //     status: 200,
+            //     message : "Welcome to the club!",
+            //     token: token
+            // });
         }
     });
 };
@@ -55,7 +78,7 @@ const registerNewUser = (req, res) => {
 const authenticateCredentials = (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "https://ga-job-tracker.netlify.app")
     const { email, password } = req.body;
-    User.findOne({ email }, function(err, user) {
+    Auth.findOne({ email }, function(err, auth) {
         if (err) {
             console.error(err);
             res.status(500)
@@ -70,7 +93,7 @@ const authenticateCredentials = (req, res) => {
                     error: 'Incorrect email or password'
                 });
         } else {
-            isCorrectPassword(password, user.password, function(err, same) {
+            isCorrectPassword(password, auth.password, function(err, same) {
                 if (err) {
                     console.error(err);
                     res.status(500)
