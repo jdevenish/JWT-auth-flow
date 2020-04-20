@@ -63,8 +63,8 @@ const registerNewUser = (req, res) => {
             res.status(500)
                 .json({
                     status: 500,
-                    error: "Error registering new user please try again.",
-                    requestBody: req.body,
+                    error: "Error creating user profile.",
+                    user: newUser,
                     err: err
                 });
         })
