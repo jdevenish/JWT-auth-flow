@@ -30,12 +30,12 @@ const registerNewUser = (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "https://ga-job-tracker.netlify.app")
     const { email, password } = req.body;
     const auth = new Auth({ email, password });
-    Auth.create(req.body).then(err =>{
-        console.log("resonpse to creating auth: ",err)
+    Auth.create(req.body).then(auth =>{
+        console.log("resonpse to creating auth: ",auth)
 
-        console.log("Creating new user with ID = ", req.body.email)
+        console.log("Creating new user with ID = ", auth.email)
         const newUser = {
-            userId: req.body.email,
+            userId: auth._id,
             targetCompanies: [],
             networkingContacts: [],
             jobSearchMaterials: {
