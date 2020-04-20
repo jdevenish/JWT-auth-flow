@@ -19,7 +19,7 @@ const TargetCompanySchema = new mongoose.Schema({
 const NetworkingContactSchema = new mongoose.Schema({
     name : String,
     phone : String,
-    email : String,
+    networksEmail : String,
     notes : String,
     employer : String
 });
