@@ -113,11 +113,19 @@ const authenticateCredentials = (req, res) => {
                     const token = jwt.sign(payload, secret, {
                         expiresIn: '1h'
                     });
-                    res.status(200).json({
-                        status: 200,
-                        message:"User Authenticated",
-                        token: token
+                    User.findOne({"userId": token}).then(user => {
+                        res.status(200).json({
+                            status: 200,
+                            userProfile: user
+                        })
                     })
+
+                    //
+                    // res.status(200).json({
+                    //     status: 200,
+                    //     message:"User Authenticated",
+                    //     token: token
+                    // })
                 }
             });
         }
