@@ -114,7 +114,7 @@ const authenticateCredentials = (req, res) => {
                     const token = jwt.sign(payload, secret, {
                         expiresIn: '1h'
                     });
-                    User.findOne({"userId": email}).then(user => {
+                    User.findOne({"userId": payload.email}).then(user => {
                         res.status(200).json({
                             status: 200,
                             token: token,
