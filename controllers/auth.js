@@ -58,7 +58,7 @@ const registerNewUser = (req, res) => {
                 token: token,
                 userProfile: user
             })
-        })
+        }).catch(err => console.log("error creating user profile:  ", err))
     });
 
     // auth.save(function(err) {
