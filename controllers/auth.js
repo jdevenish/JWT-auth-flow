@@ -32,33 +32,35 @@ const registerNewUser = (req, res) => {
     const auth = new Auth({ email, password });
     Auth.create(req.body).then(err =>{
         console.log("resonpse to creating auth: ",err)
+
+        console.log("Creating new user with ID = ", req.body.email)
+        const newUser = {
+            userId: req.body.email,
+            targetCompanies: [],
+            networkingContacts: [],
+            jobSearchMaterials: {
+                brandStatement: "",
+                coverLetter: "",
+                resume: "",
+                gitHub: "",
+                linkedIn: "",
+                repl: "",
+                codeSandBox: "",
+                profileSite: ""
+            }
+        };
+        const token = jwt.sign({email: req.body.email}, secret, {
+            expiresIn: '1h'
+        });
+        User.create(newUser).then(user => {
+            res.status(200).json({
+                status: 200,
+                token: token,
+                userProfile: user
+            })
+        })
     });
-    console.log("Creating new user with ID = ", req.body.email)
-    const newUser = {
-        userId: req.body.email,
-        targetCompanies: [],
-        networkingContacts: [],
-        jobSearchMaterials: {
-            brandStatement: "",
-            coverLetter: "",
-            resume: "",
-            gitHub: "",
-            linkedIn: "",
-            repl: "",
-            codeSandBox: "",
-            profileSite: ""
-        }
-    };
-    const token = jwt.sign({email: req.body.email}, secret, {
-                    expiresIn: '1h'
-                });
-    User.create(newUser).then(user => {
-        res.status(200).json({
-                            status: 200,
-                            token: token,
-                            userProfile: user
-                        })
-    })
+
     // auth.save(function(err) {
     //     if (err) {
     //         res.status(500)
