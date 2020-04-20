@@ -31,7 +31,7 @@ const registerNewUser = (req, res) => {
     const { email, password } = req.body;
     const auth = new Auth({ email, password });
     auth.save(function(err) {
-        if (err) {
+        if (err || email.email === undefined) {
             res.status(500)
                 .json({
                     status: 500,
@@ -43,9 +43,9 @@ const registerNewUser = (req, res) => {
             const token = jwt.sign(payload, secret, {
                 expiresIn: '1h'
             });
-
+            console.log("Creating new user with ID = ", email.email)
             const newUser = {
-                userId: payload.email,
+                userId: email.email,
                 targetCompanies: [],
                 networkingContacts: [],
                 jobSearchMaterials: {
