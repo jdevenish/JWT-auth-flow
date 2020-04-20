@@ -27,13 +27,10 @@ function isCorrectPassword(enteredPassword, savedPassword, callback) {
 
 
 const registerNewUser = (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://ga-job-tracker.netlify.app")
-    const { email, password } = req.body;
-    const auth = new Auth({ email, password });
+    res.setHeader("Access-Control-Allow-Origin", "https://ga-job-tracker.netlify.app");
     Auth.create(req.body).then(auth =>{
-        console.log("resonpse to creating auth: ",auth)
-
-        console.log("Creating new user with ID = ", auth.email)
+        console.log("resonpse to creating auth: ",auth);
+        console.log("Creating new user with ID = ", auth.email);
         const newUser = {
             userId: auth._id,
             targetCompanies: [],
@@ -59,7 +56,7 @@ const registerNewUser = (req, res) => {
                 userProfile: user
             })
         }).catch(err => {
-            console.log("error creating user profile:  ", err)
+            console.log("error creating user profile:  ", err);
             res.status(500)
                 .json({
                     status: 500,
@@ -78,51 +75,6 @@ const registerNewUser = (req, res) => {
             });
     });
 
-    // auth.save(function(err) {
-    //     if (err) {
-    //         res.status(500)
-    //             .json({
-    //                 status: 500,
-    //                 error: "Error registering new user please try again.",
-    //                 requestBody: req.body,
-    //                 err: err
-    //             });
-    //     } else {
-    //         // Issue token
-    //         const payload = { email };
-    //         const token = jwt.sign(payload, secret, {
-    //             expiresIn: '1h'
-    //         });
-    //         console.log("Creating new user with ID = ", req.body.email)
-    //         const newUser = {
-    //             userId: req.body.email,
-    //             targetCompanies: [],
-    //             networkingContacts: [],
-    //             jobSearchMaterials: {
-    //                 brandStatement: "",
-    //                 coverLetter: "",
-    //                 resume: "",
-    //                 gitHub: "",
-    //                 linkedIn: "",
-    //                 repl: "",
-    //                 codeSandBox: "",
-    //                 profileSite: ""
-    //             }
-    //         };
-    //         User.create(newUser).then(user =>{
-    //             res.status(200).json({
-    //                 status: 200,
-    //                 token: token,
-    //                 userProfile: user
-    //             })
-    //         })
-    //         // res.status(200).json({
-    //         //     status: 200,
-    //         //     message : "Welcome to the club!",
-    //         //     token: token
-    //         // });
-    //     }
-    // });
 };
 
 
@@ -172,12 +124,6 @@ const authenticateCredentials = (req, res) => {
                         })
                     })
 
-                    //
-                    // res.status(200).json({
-                    //     status: 200,
-                    //     message:"User Authenticated",
-                    //     token: token
-                    // })
                 }
             });
         }
