@@ -86,7 +86,7 @@ const authenticateCredentials = (req, res) => {
                     status: 500,
                     error: 'Internal error please try again'
                 });
-        } else if (!user) {
+        } else if (!auth) {
             res.status(401)
                 .json({
                     status: 401,
