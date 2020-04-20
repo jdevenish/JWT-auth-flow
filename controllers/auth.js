@@ -116,6 +116,7 @@ const authenticateCredentials = (req, res) => {
                     User.findOne({"userId": token}).then(user => {
                         res.status(200).json({
                             status: 200,
+                            token: token,
                             userProfile: user
                         })
                     })
