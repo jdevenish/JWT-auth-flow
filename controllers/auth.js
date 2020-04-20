@@ -45,7 +45,7 @@ const registerNewUser = (req, res) => {
             });
 
             const newUser = {
-                userId: token,
+                userId: email,
                 targetCompanies: [],
                 networkingContacts: [],
                 jobSearchMaterials: {
@@ -62,6 +62,7 @@ const registerNewUser = (req, res) => {
             User.create(newUser).then(user =>{
                 res.status(200).json({
                     status: 200,
+                    token: token,
                     userProfile: user
                 })
             })
@@ -113,7 +114,7 @@ const authenticateCredentials = (req, res) => {
                     const token = jwt.sign(payload, secret, {
                         expiresIn: '1h'
                     });
-                    User.findOne({"userId": token}).then(user => {
+                    User.findOne({"userId": email}).then(user => {
                         res.status(200).json({
                             status: 200,
                             token: token,
