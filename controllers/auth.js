@@ -31,7 +31,7 @@ const registerNewUser = (req, res) => {
     const { email, password } = req.body;
     const auth = new Auth({ email, password });
     auth.save(function(err) {
-        if (err || email.email === undefined) {
+        if (err) {
             res.status(500)
                 .json({
                     status: 500,
