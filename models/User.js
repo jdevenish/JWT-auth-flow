@@ -2,11 +2,32 @@ const mongoose = require('../db/connection');
 const TargetCompany = require("./TargetCompany");
 const NetworkingContact = require("./NetworkingContact")
 
+// Schema
+const JobSchema = new mongoose.Schema({
+    title: String,
+    postingURL: String,
+    notes: String
+});
 
-// schema
+const TargetCompanySchema = new mongoose.Schema({
+    name: String,
+    jobs: [ JobSchema ],
+    pointOfContact: String,
+    icon: String
+});
+
+const NetworkingContactSchema = new mongoose.Schema({
+    name : String,
+    phone : String,
+    email : String,
+    notes : String,
+    employer : String
+});
+
+
 const UserSchema = new mongoose.Schema({
     userId: String,
-    targetCompanies: [ TargetCompany ],
+    targetCompanies: [ TargetCompanySchema ],
     jobSearchMaterials: {
         brandStatement: String,
         coverLetter: String,
@@ -17,7 +38,7 @@ const UserSchema = new mongoose.Schema({
         codeSandBox: String,
         profileSite: String
     },
-    networkingContacts: [ NetworkingContact ]
+    networkingContacts: [ NetworkingContactSchema ]
 });
 
 //model
