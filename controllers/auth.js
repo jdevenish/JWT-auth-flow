@@ -45,9 +45,9 @@ const registerNewUser = (req, res) => {
             const token = jwt.sign(payload, secret, {
                 expiresIn: '1h'
             });
-            console.log("Creating new user with ID = ", email.email)
+            console.log("Creating new user with ID = ", req.body.email)
             const newUser = {
-                userId: email.email,
+                userId: req.body.email,
                 targetCompanies: [],
                 networkingContacts: [],
                 jobSearchMaterials: {
