@@ -45,7 +45,7 @@ const registerNewUser = (req, res) => {
             });
 
             const newUser = {
-                userId: req.body.email,
+                userId: payload.email,
                 targetCompanies: [],
                 networkingContacts: [],
                 jobSearchMaterials: {
