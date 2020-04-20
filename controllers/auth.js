@@ -58,15 +58,24 @@ const registerNewUser = (req, res) => {
                 token: token,
                 userProfile: user
             })
-        }).catch(err => console.log("error creating user profile:  ", err))
+        }).catch(err => {
+            console.log("error creating user profile:  ", err)
+            res.status(500)
+                .json({
+                    status: 500,
+                    error: "Error registering new user please try again.",
+                    requestBody: req.body,
+                    err: err
+                });
+        })
     }).catch(err =>{
         res.status(500)
-                    .json({
-                        status: 500,
-                        error: "Error registering new user please try again.",
-                        requestBody: req.body,
-                        err: err
-                    });
+            .json({
+                status: 500,
+                error: "Error registering new user please try again.",
+                requestBody: req.body,
+                err: err
+            });
     });
 
     // auth.save(function(err) {
