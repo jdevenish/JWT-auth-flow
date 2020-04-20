@@ -35,7 +35,8 @@ const registerNewUser = (req, res) => {
             res.status(500)
                 .json({
                     status: 500,
-                    error: "Error registering new user please try again."
+                    error: "Error registering new user please try again.",
+                    email: email.email
                 });
         } else {
             // Issue token
