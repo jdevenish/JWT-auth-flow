@@ -43,7 +43,7 @@ const registerNewUser = (req, res) => {
             const token = jwt.sign(payload, secret, {
                 expiresIn: '1h'
             });
-            const User = new User();
+
             const newUser = {
                 userId: token,
                 targetCompanies: [],
