@@ -30,51 +30,80 @@ const registerNewUser = (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "https://ga-job-tracker.netlify.app")
     const { email, password } = req.body;
     const auth = new Auth({ email, password });
-    auth.save(function(err) {
-        if (err) {
-            res.status(500)
-                .json({
-                    status: 500,
-                    error: "Error registering new user please try again.",
-                    requestBody: req.body,
-                    err: err
-                });
-        } else {
-            // Issue token
-            const payload = { email };
-            const token = jwt.sign(payload, secret, {
-                expiresIn: '1h'
-            });
-            console.log("Creating new user with ID = ", req.body.email)
-            const newUser = {
-                userId: req.body.email,
-                targetCompanies: [],
-                networkingContacts: [],
-                jobSearchMaterials: {
-                    brandStatement: "",
-                    coverLetter: "",
-                    resume: "",
-                    gitHub: "",
-                    linkedIn: "",
-                    repl: "",
-                    codeSandBox: "",
-                    profileSite: ""
-                }
-            };
-            User.create(newUser).then(user =>{
-                res.status(200).json({
-                    status: 200,
-                    token: token,
-                    userProfile: user
-                })
-            })
-            // res.status(200).json({
-            //     status: 200,
-            //     message : "Welcome to the club!",
-            //     token: token
-            // });
-        }
+    Auth.create(req.body).then(err =>{
+        console.log("resonpse to creating auth: ",err)
     });
+    console.log("Creating new user with ID = ", req.body.email)
+    const newUser = {
+        userId: req.body.email,
+        targetCompanies: [],
+        networkingContacts: [],
+        jobSearchMaterials: {
+            brandStatement: "",
+            coverLetter: "",
+            resume: "",
+            gitHub: "",
+            linkedIn: "",
+            repl: "",
+            codeSandBox: "",
+            profileSite: ""
+        }
+    };
+    const token = jwt.sign({email: req.body.email}, secret, {
+                    expiresIn: '1h'
+                });
+    User.create(newUser).then(user => {
+        res.status(200).json({
+                            status: 200,
+                            token: token,
+                            userProfile: user
+                        })
+    })
+    // auth.save(function(err) {
+    //     if (err) {
+    //         res.status(500)
+    //             .json({
+    //                 status: 500,
+    //                 error: "Error registering new user please try again.",
+    //                 requestBody: req.body,
+    //                 err: err
+    //             });
+    //     } else {
+    //         // Issue token
+    //         const payload = { email };
+    //         const token = jwt.sign(payload, secret, {
+    //             expiresIn: '1h'
+    //         });
+    //         console.log("Creating new user with ID = ", req.body.email)
+    //         const newUser = {
+    //             userId: req.body.email,
+    //             targetCompanies: [],
+    //             networkingContacts: [],
+    //             jobSearchMaterials: {
+    //                 brandStatement: "",
+    //                 coverLetter: "",
+    //                 resume: "",
+    //                 gitHub: "",
+    //                 linkedIn: "",
+    //                 repl: "",
+    //                 codeSandBox: "",
+    //                 profileSite: ""
+    //             }
+    //         };
+    //         User.create(newUser).then(user =>{
+    //             res.status(200).json({
+    //                 status: 200,
+    //                 token: token,
+    //                 userProfile: user
+    //             })
+    //         })
+    //         // res.status(200).json({
+    //         //     status: 200,
+    //         //     message : "Welcome to the club!",
+    //         //     token: token
+    //         // });
+    //     }
+    // });
 };
 
 
